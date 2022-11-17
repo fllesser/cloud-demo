@@ -1,0 +1,32 @@
+server:
+  port: 8090
+
+eureka:
+  client:
+    service-url: # eureka的地址信息,把自己也注册到eureka
+      defaultZone: http://101.35.240.17:10086/eureka
+
+spring:
+  application:
+    name: orderservice
+  datasource:
+    url: jdbc:mysql://101.35.240.17:3306/cloud_order?useSSL=false
+    username: root
+    password: 261806
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+mybatis:
+  type-aliases-package: cn.itcast.user.pojo
+  configuration:
+    map-underscore-to-camel-case: true
+
+logging:
+  level:
+    cn.itcast: debug
+  pattern:
+    dateformat: MM-dd HH:mm:ss:SSS
+
+ribbon:
+  eager-load:
+    enabled: true # 开启饥饿加载
+    clients: userservice # 指定对userservice进行饥饿加载
