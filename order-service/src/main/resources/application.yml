@@ -1,19 +1,27 @@
 server:
   port: 8090
 
-eureka:
-  client:
-    service-url: # eureka的地址信息,把自己也注册到eureka
-      defaultZone: http://101.35.240.17:10086/eureka
+#eureka:
+#  client:
+#    service-url: # eureka的地址信息,把自己也注册到eureka
+#      defaultZone: http://101.35.240.17:10086/eureka
 
 spring:
   application:
     name: orderservice
   datasource:
-    url: jdbc:mysql://101.35.240.17:3306/cloud_order?useSSL=false
+    url: jdbc:mysql://localhost:3306/cloud_order?useSSL=false
     username: root
     password: 261806
     driver-class-name: com.mysql.cj.jdbc.Driver
+  cloud:
+    nacos:
+      server-addr: localhost:8848 # 默认nacos服务地址,可以不配
+      discovery:
+        cluster-name: HZ
+        # namespace: cbe8d599-f484-41a7-b439-5b016b81695a # dev
+        ephemeral: false # 是否是临时实例
+
 
 mybatis:
   type-aliases-package: cn.itcast.user.pojo
@@ -30,3 +38,7 @@ ribbon:
   eager-load:
     enabled: true # 开启饥饿加载
     clients: userservice # 指定对userservice进行饥饿加载
+
+userservice:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.alibaba.cloud.nacos.ribbon.NacosRule # 随机负载均衡规则

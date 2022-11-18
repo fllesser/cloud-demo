@@ -1,19 +1,24 @@
 server:
   port: 8091
 
-eureka:
-  client:
-    service-url: # eureka的地址信息,把自己也注册到eureka
-      defaultZone: http://101.35.240.17:10086/eureka
+#eureka:
+#  client:
+#    service-url: # eureka的地址信息,把自己也注册到eureka
+#      defaultZone: http://101.35.240.17:10086/eureka
 
 spring:
   application:
     name: userservice
   datasource:
-    url: jdbc:mysql://101.35.240.17:3306/cloud_user?useSSL=false
+    url: jdbc:mysql://localhost:3306/cloud_user?useSSL=false
     username: root
     password: 261806
     driver-class-name: com.mysql.cj.jdbc.Driver
+  cloud:
+    nacos:
+      server-addr: localhost:8848 # 默认nacos服务地址,可以不配
+      discovery:
+        cluster-name: HZ #集群名称这里用HZ代表杭州
 
 mybatis:
   type-aliases-package: cn.itcast.user.pojo
