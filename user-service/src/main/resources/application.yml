@@ -4,7 +4,7 @@ server:
 #eureka:
 #  client:
 #    service-url: # eureka的地址信息,把自己也注册到eureka
-#      defaultZone: http://101.35.240.17:10086/eureka
+#      defaultZone: http://localhost:10086/eureka
 
 spring:
   application:
